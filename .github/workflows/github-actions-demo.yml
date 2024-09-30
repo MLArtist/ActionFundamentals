@@ -1,2 +1,27 @@
 name: GitHub Actions Demo
 
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - .github/**  # Ignore changes in the .github folder
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '15 6 * * 0'  # Every Sunday at 6:15 UTC
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run your script or command
+        run: |
+          echo "Running the workflow"
+          # Add your commands here
